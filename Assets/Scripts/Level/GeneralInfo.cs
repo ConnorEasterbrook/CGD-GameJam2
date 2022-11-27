@@ -12,6 +12,7 @@ public class GeneralInfo : MonoBehaviour
     {
         Score = 1000; Time = 0;
 
+        AudioListener.volume = PlayerPrefs.GetFloat("volume");
     }
 
     void Update()
