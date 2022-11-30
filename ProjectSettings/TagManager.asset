@@ -9,6 +9,7 @@ TagManager:
   - Water
   - GateManager
   - Obstacle
+  - Spawn
   layers:
   - Default
   - TransparentFX

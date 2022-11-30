@@ -7,6 +7,7 @@ public class Score : MonoBehaviour
 
     public GeneralInfo Scoreinfo;
     private float ScoreIncrease = 1;
+    private int time = 100;
 
     void Update()
     {

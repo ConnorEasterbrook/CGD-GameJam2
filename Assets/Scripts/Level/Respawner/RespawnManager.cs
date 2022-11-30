@@ -13,44 +13,42 @@ public class RespawnManager : MonoBehaviour
 
     public float respawnTime = 3.0f;
     private int countdown = 3;
-    private bool crashed;
-    private Vector3 playerPosition;
-    private Quaternion playerRotation;
+    private Vector3 respawnPoint;
+    private Quaternion respawnRot;
 
     private void Awake()
     {
+        player.gameObject.SetActive(true);
         currentRespawnPoint = defaultSpawn;
+        
 
-        playerPosition = carMovement.gameObject.transform.position;
-        playerRotation = carMovement.gameObject.transform.rotation;
+        respawnPoint = carMovement.gameObject.transform.position;
+        respawnRot = carMovement.gameObject.transform.rotation;
     }
 
-    // private void Update()
-    // {
-    //     if (crashed)
-    //     {
-    //         countdown = countdown - Time.deltaTime;
-    //         if (countdown <= 0.0f)
-    //         {
-    //             Respawn();
-    //             carMovement.controlsEnabled = true;
-    //             countdown = respawnTime;
-    //             crashed = false;
-    //         }
-    //     }
-    // }
+    private void Update()
+    {
+        if (Input.GetAxisRaw("Cancel") != 0)
+        {
+            Crash();
+        }
+    }
+
+    public void changeCoord(Vector3 pos, Quaternion rot)
+    {
+        respawnPoint = pos;
+        respawnRot = rot;
+    }
 
     public async void Crash()
     {
-        Debug.Log("Crash");
         player.gameObject.SetActive(false);
-        carMovement.gameObject.transform.position = playerPosition;
-        carMovement.gameObject.transform.rotation = playerRotation;
+        carMovement.gameObject.transform.position = respawnPoint;
+        carMovement.gameObject.transform.rotation = respawnRot;
         player.gameObject.SetActive(true);
         carMovement.controlsEnabled = false;
 
         await Task.Delay(countdown * 1000);
         carMovement.controlsEnabled = true;
-        // crashed = true;
     }
 }

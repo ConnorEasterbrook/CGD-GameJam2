@@ -21,12 +21,12 @@ public class GhostRecord : MonoBehaviour
 
         if (ghost.isReplay)
         {
-            Debug.Log(timeValue);
+            //Debug.Log(timeValue);
             if (change == true)
             {
                 timeValue = 2;
                 //ghost.TimePos.Clear();
-                Debug.Log(timeValue);
+                //Debug.Log(timeValue);
                 change = false;
             }
             GetIndex();

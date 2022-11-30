@@ -14,9 +14,6 @@ public class CarMovement : MonoBehaviour
     public float maxSteerAngle, turnSpeed, driveSpeed, reverseSpeed, maxSpeed;
 
     [Header("Debug")]
-    public float debugSpeedDontTouch;
-    public float debugDriftAngleDontTouch;
-    public bool debugDriftingDontTouch;
 
     public bool controlsEnabled = true;
     private float moveInput;
@@ -26,6 +23,13 @@ public class CarMovement : MonoBehaviour
 
     [Header("Extra")]
     public bool isModel = false;
+    public GameObject wheel;
+    private Vector3 wheelRotation;
+
+    private void Awake()
+    {
+        wheelRotation = wheel.transform.eulerAngles;
+    }
 
     private void Update()
     {
@@ -36,12 +40,12 @@ public class CarMovement : MonoBehaviour
 
             moveInput *= moveInput > 0 ? driveSpeed : reverseSpeed; // If the input is positive, multiply it by the drive speed, otherwise multiply it by the reverse speed
 
+            wheel.transform.localRotation *= Quaternion.Euler(0, 0, turnInput); // Rotate the wheel model
+
             if (allowDrift)
             {
                 Drift();
             }
-
-            debugSpeedDontTouch = currentSpeed; // Debug speed
         }
         else
         {
@@ -58,15 +62,11 @@ public class CarMovement : MonoBehaviour
         if (driftAngle > 3 && currentSpeed > maxSpeed / 2)
         {
             wheelForce = false;
-            debugDriftingDontTouch = true;
         }
         else
         {
             wheelForce = true;
-            debugDriftingDontTouch = false;
         }
-
-        debugDriftAngleDontTouch = driftAngle; // Debug drift angle
     }
 
     private void FixedUpdate()

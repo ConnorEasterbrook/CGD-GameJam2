@@ -4,18 +4,54 @@ using UnityEngine;
 
 public class GateManager : MonoBehaviour
 {
-    int currentLapType = 0;
+    public GameObject shortLap;
+    public GameObject longLap;
 
-    enum LapType
+
+    public static bool gatesComplete;
+
+    public static int lapCount;
+
+    private void Start()
     {
-        ShortLap,
-        LongLap
+        shortLap.SetActive(true);
+        longLap.SetActive(false);
+        lapCount = 0;
     }
 
 
-
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetKeyDown("c"))
+        {
+            lapCount += 1;
+        }
+
+        //Debug.Log(lapCount);
+        if (lapCount == 0)
+        {
+            if (DetourTrigger.detour)
+            {
+                shortLap.SetActive(false);
+                longLap.SetActive(true);
+            }
+            if (!DetourTrigger.detour)
+            {
+                longLap.SetActive(false);
+                shortLap.SetActive(true);
+            }
+        }
+
+        if (lapCount == 1)
+        {
+                longLap.SetActive(true);
+                shortLap.SetActive(false);
+        }
+
+        if (lapCount > 1)
+        {
+            longLap.SetActive(true);
+            shortLap.SetActive(false);
+        }
     }
 }
