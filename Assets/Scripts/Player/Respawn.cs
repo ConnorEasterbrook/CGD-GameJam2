@@ -33,6 +33,7 @@ public class Respawn : MonoBehaviour
         if (collision.gameObject.tag == "Obstacle")
         {
             manager.Crash();
+
         }
     }
 }

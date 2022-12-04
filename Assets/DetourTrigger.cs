@@ -17,7 +17,7 @@ public class DetourTrigger : MonoBehaviour
             Text.SetText("ROAD AHEAD " + '\n' +
                 "    CLOSED");
             Chevrons.SetActive(true);
-            detourBox.SetActive(true);
+            //detourBox.SetActive(true);
         }
     }
 

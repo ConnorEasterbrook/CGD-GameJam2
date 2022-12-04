@@ -5,12 +5,12 @@ using UnityEngine;
 public class GeneralInfo : MonoBehaviour
 {
     public float Score { get; private set;}
-    public float Time { get; private set; }
+    //public float Time { get; private set; }
 
     // Update is called once per frame
     void Start()
     {
-        Score = 1000; Time = 0;
+        Score = 1000;
 
         AudioListener.volume = PlayerPrefs.GetFloat("volume");
     }
@@ -23,11 +23,11 @@ public class GeneralInfo : MonoBehaviour
 
     public void ScoreChange(float ScoreChangeValue)
     {
-        Score -= ScoreChangeValue;
+        Score += ScoreChangeValue;
     }
 
-    public void TimeChange(float TimeChangeValue)
-    {
-        Time += TimeChangeValue;
-    }
+    //public void TimeChange(float TimeChangeValue)
+    //{
+        //Time += TimeChangeValue;
+    //}
 }

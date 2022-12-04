@@ -10,6 +10,6 @@ public class Timer : MonoBehaviour
     void Update()
     {
         float TimeChange = TimeIncrease * Time.deltaTime;
-        Timeinfo.TimeChange(TimeChange);
+        //Timeinfo.TimeChange(TimeChange);
     }
 }

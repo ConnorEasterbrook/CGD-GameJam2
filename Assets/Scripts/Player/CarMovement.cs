@@ -17,8 +17,8 @@ public class CarMovement : MonoBehaviour
 
     public bool controlsEnabled = true;
     private float moveInput;
-    private float turnInput;
-    private float currentSpeed;
+    [HideInInspector] public float turnInput;
+    public float currentSpeed;
     private bool wheelForce = true;
 
     [Header("Extra")]
@@ -52,6 +52,8 @@ public class CarMovement : MonoBehaviour
             moveInput = 0;
             turnInput = 0;
         }
+
+
     }
 
     private void Drift()
@@ -71,7 +73,7 @@ public class CarMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currentSpeed = carRigidbody.velocity.sqrMagnitude;
+        currentSpeed = carRigidbody.velocity.sqrMagnitude * 5f; // Get the car's current speed
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -112,11 +114,6 @@ public class CarMovement : MonoBehaviour
         frontRightWC.brakeTorque = 0;
         backLeftWC.brakeTorque = 0;
         backRightWC.brakeTorque = 0;
-
-        if (currentSpeed > maxSpeed || !wheelForce)
-        {
-            return;
-        }
 
         //* ACCELERLATION
         backLeftWC.motorTorque = moveInput; // Set the motor torque of the back wheels

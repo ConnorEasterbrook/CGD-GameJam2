@@ -10,6 +10,7 @@ public class RespawnManager : MonoBehaviour
     public CarMovement carMovement;
     public Transform defaultSpawn;
     static public Transform currentRespawnPoint;
+    public GeneralInfo generalInfo;
 
     public float respawnTime = 3.0f;
     private int countdown = 3;
@@ -43,6 +44,7 @@ public class RespawnManager : MonoBehaviour
     public async void Crash()
     {
         player.gameObject.SetActive(false);
+        generalInfo.ScoreChange(-100);
         carMovement.gameObject.transform.position = respawnPoint;
         carMovement.gameObject.transform.rotation = respawnRot;
         player.gameObject.SetActive(true);

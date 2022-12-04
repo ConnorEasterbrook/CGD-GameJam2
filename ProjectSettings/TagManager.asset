@@ -10,6 +10,7 @@ TagManager:
   - GateManager
   - Obstacle
   - Spawn
+  - Score
   layers:
   - Default
   - TransparentFX

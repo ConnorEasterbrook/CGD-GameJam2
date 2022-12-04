@@ -7,10 +7,13 @@ public class UIScript : MonoBehaviour
 {
     public Text timeText;
     public Text speedText;
+    public Text scoreText;
+    public GeneralInfo generalInfo;
     public GameObject car;
+    public CarMovement carMovement;
     private int minutes;
-    private int time;
-    private int timeAlter;
+    private float timecheck;
+    private float timesecs;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +25,12 @@ public class UIScript : MonoBehaviour
     {
         while (true)
         {
-            time = (int)Time.timeSinceLevelLoad - timeAlter;
-            timeText.text = minutes + " : " + time.ToString();
-
-            if (Mathf.RoundToInt(Time.time) > 59)
+            timecheck += 1;
+            timeText.text = minutes + " : " + timecheck.ToString();
+            //Debug.Log(timecheck);
+            if (Mathf.RoundToInt(timecheck) > 59)
             {
+                timecheck = 0;
                 minutes++;
             }
 
@@ -34,14 +38,16 @@ public class UIScript : MonoBehaviour
         }
     }
 
-    public void ChangeTime(int seconds)
-    {
-        timeAlter -= seconds;
-    }
+    //public void ChangeTime(int seconds)
+    //{
+    //timeAlter -= seconds;
+    //}
 
     void Update()
     {
         // Vector3 lastPosition = car.transform.position;
-        // speedText.text = Mathf.RoundToInt((car.transform.position - lastPosition).magnitude * 2.23693629f * 400) + " MPH";
+        speedText.text = Mathf.RoundToInt(carMovement.currentSpeed) + " MPH";
+        scoreText.text = ("Score " + Mathf.RoundToInt(generalInfo.Score));
     }
 }
+
