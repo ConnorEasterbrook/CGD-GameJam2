@@ -7,8 +7,15 @@ public class DetourTrigger : MonoBehaviour
 {
     public TextMeshPro Text;
     public GameObject Chevrons;
-    public GameObject detourBox;
-    public static bool detour;
+    public static bool detour = false;
+
+    private void Update()
+    {
+        if (GateManager.lapCount == 1)
+        {
+            this.gameObject.GetComponent<BoxCollider>().enabled = true;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,9 +24,7 @@ public class DetourTrigger : MonoBehaviour
             Text.SetText("ROAD AHEAD " + '\n' +
                 "    CLOSED");
             Chevrons.SetActive(true);
-            //detourBox.SetActive(true);
+            detour = true;
         }
     }
-
-    
 }

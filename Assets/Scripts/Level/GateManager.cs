@@ -6,7 +6,7 @@ public class GateManager : MonoBehaviour
 {
     public GameObject shortLap;
     public GameObject longLap;
-
+    DetourTrigger detourTrigger;
 
     public static bool gatesComplete;
 
@@ -27,8 +27,13 @@ public class GateManager : MonoBehaviour
             lapCount += 1;
         }
 
-        //Debug.Log(lapCount);
         if (lapCount == 0)
+        {
+            longLap.SetActive(false);
+            shortLap.SetActive(true);
+        }
+
+        if (lapCount == 1)
         {
             if (DetourTrigger.detour)
             {
@@ -42,13 +47,7 @@ public class GateManager : MonoBehaviour
             }
         }
 
-        if (lapCount == 1)
-        {
-                longLap.SetActive(true);
-                shortLap.SetActive(false);
-        }
-
-        if (lapCount > 1)
+        if (lapCount >= 2)
         {
             longLap.SetActive(true);
             shortLap.SetActive(false);

@@ -29,7 +29,7 @@ public class RespawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxisRaw("Cancel") != 0)
+        if (Input.GetAxisRaw("Cancel") != 0 && carMovement.controlsEnabled != false)
         {
             Crash();
         }

@@ -58,8 +58,8 @@ public class PersonCollision : MonoBehaviour
             Destroy(rb);
             timeToSpin = false;
 
-            await Task.Delay(1000);
-            Destroy(this);
+            await Task.Delay(10000);
+            Destroy(gameObject);
         }
     }
 }

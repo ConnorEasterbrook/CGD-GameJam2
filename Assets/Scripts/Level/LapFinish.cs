@@ -26,7 +26,6 @@ public class LapFinish : MonoBehaviour
                 GateManager.lapCount += 1;
                 GateManager.gatesComplete = false;
             }
-            //Debug.Log("hello");
         }
     }
 }
