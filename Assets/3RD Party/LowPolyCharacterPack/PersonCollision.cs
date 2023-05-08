@@ -11,6 +11,9 @@ public class PersonCollision : MonoBehaviour
     public bool flyAway = false;
     public GameObject car;
     private bool timeToSpin = false;
+    public bool deepVoice = false;
+    private AudioSource _AudioSource;
+    [SerializeField] private AudioClip[] _audioClips;
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +21,16 @@ public class PersonCollision : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<Collider>();
         anim = GetComponent<Animator>();
+        _AudioSource = GetComponent<AudioSource>();
+
+        if (deepVoice)
+        {
+            _AudioSource.clip = _audioClips[0];
+        }
+        else
+        {
+            _AudioSource.clip = _audioClips[1];
+        }    
     }
 
     void Update()
@@ -32,6 +45,7 @@ public class PersonCollision : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            _AudioSource.Play();
 
             rb.isKinematic = false;
             rb.useGravity = true;

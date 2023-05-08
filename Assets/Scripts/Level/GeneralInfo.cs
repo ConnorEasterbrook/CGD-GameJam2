@@ -17,7 +17,7 @@ public class GeneralInfo : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(GateManager.lapCount);
+        // Debug.Log(GateManager.lapCount);
         //Debug.Log(Score);
         //Debug.Log(Time);
     }

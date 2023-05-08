@@ -22,11 +22,6 @@ public class GateManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown("c"))
-        {
-            lapCount += 1;
-        }
-
         if (lapCount == 0)
         {
             longLap.SetActive(false);

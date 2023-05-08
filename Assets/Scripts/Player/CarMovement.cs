@@ -13,8 +13,13 @@ public class CarMovement : MonoBehaviour
     public bool allowDrift = true;
     public float maxSteerAngle, turnSpeed, driveSpeed, reverseSpeed, maxSpeed;
 
-    [Header("Debug")]
+    [Header("Sounds")]
+    public float minPitch;
+    public float maxPitch;
+    private float pitchFromCar;
+    [SerializeField] private AudioSource carAudio;
 
+    [Header("Debug")]
     public bool controlsEnabled = true;
     private float moveInput;
     [HideInInspector] public float turnInput;
@@ -29,6 +34,11 @@ public class CarMovement : MonoBehaviour
     private void Awake()
     {
         wheelRotation = wheel.transform.eulerAngles;
+    }
+
+    private void Start()
+    {
+        carAudio.Play();
     }
 
     private void Update()
@@ -53,7 +63,7 @@ public class CarMovement : MonoBehaviour
             turnInput = 0;
         }
 
-
+        EngineSound();
     }
 
     private void Drift()
@@ -69,6 +79,14 @@ public class CarMovement : MonoBehaviour
         {
             wheelForce = true;
         }
+    }
+
+    private void EngineSound()
+    {
+        pitchFromCar = Mathf.Lerp(minPitch, maxPitch, currentSpeed / maxSpeed); // Calculate the pitch based on the car's current speed
+        carAudio.pitch = pitchFromCar;
+
+        carAudio.volume = Mathf.Lerp(1.0f, 2.5f, currentSpeed / maxSpeed); // Calculate the volume based on the car's current speed
     }
 
     private void FixedUpdate()

@@ -24,6 +24,7 @@ public class ChangeScene : MonoBehaviour
     }
     public void LoadScene()
     {
+
         SceneManager.LoadScene(1);
     }
     public void ReturnScene()
